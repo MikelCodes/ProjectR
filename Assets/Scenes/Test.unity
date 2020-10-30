@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!54 &22007028 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 355725666364527649, guid: 3dc23286dd9e21546a6228e8555af823,
+    type: 3}
+  m_PrefabInstance: {fileID: 1381215980}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &83241517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,7 +1956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 6.4, y: 4, z: -40.13}
+  m_LocalPosition: {x: 6.4, y: 4, z: -9.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2657,7 +2663,7 @@ PrefabInstance:
     - target: {fileID: 8403069685674990451, guid: 3dc23286dd9e21546a6228e8555af823,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8403069685674990451, guid: 3dc23286dd9e21546a6228e8555af823,
         type: 3}
@@ -2667,7 +2673,7 @@ PrefabInstance:
     - target: {fileID: 8403069685674990451, guid: 3dc23286dd9e21546a6228e8555af823,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8403069685674990451, guid: 3dc23286dd9e21546a6228e8555af823,
         type: 3}
@@ -2682,7 +2688,7 @@ PrefabInstance:
     - target: {fileID: 8403069685674990451, guid: 3dc23286dd9e21546a6228e8555af823,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 8403069685674990451, guid: 3dc23286dd9e21546a6228e8555af823,
         type: 3}
@@ -2739,6 +2745,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fc0ff023e3b0c6142866d3e82d647538, type: 2}
+    - target: {fileID: 3488805526910057705, guid: 3dc23286dd9e21546a6228e8555af823,
+        type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 22007028}
+    - target: {fileID: 3488805526910057705, guid: 3dc23286dd9e21546a6228e8555af823,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 7454870755422121855, guid: 09cf356983e0d374ba00db8f4d72ac7b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc23286dd9e21546a6228e8555af823, type: 3}
 --- !u!1 &1415431141

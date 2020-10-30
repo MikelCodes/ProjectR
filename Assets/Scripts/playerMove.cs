@@ -108,12 +108,6 @@ public class playerMove : MonoBehaviour
         }
 
 
-        //jump timer
-        if (noJump > 0)
-        {
-            noJump -= Time.deltaTime;
-        }
-
         //stores raycast hit data in 'hit'
         RaycastHit hit;
 
@@ -134,6 +128,14 @@ public class playerMove : MonoBehaviour
                         jumpPressed = true;
                     }
 
+                }
+                else
+                {
+                    //jump timer
+                    if (noJump > 0)
+                    {
+                        noJump -= Time.deltaTime;
+                    }
                 }
             }
         }
