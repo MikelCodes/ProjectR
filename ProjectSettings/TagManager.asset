@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - jumpGround
+  - projectile
+  - player
   layers:
   - Default
   - TransparentFX

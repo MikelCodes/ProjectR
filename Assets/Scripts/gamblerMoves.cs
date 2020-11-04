@@ -14,26 +14,134 @@ public class gamblerMoves : MonoBehaviour
     [SerializeField]
     private float cooldown;
 
-    //prefab for Gambler's card projectile
+    //prefab for Gambler's card projectile (all 4)
     [SerializeField]
-    private GameObject card;
+    private GameObject card1, card2, card3, card4;
+
+    private float cardNo;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         keyPressed();
         cooldown -= Time.deltaTime;
     }
-    
-    void keyPressed ()
+
+    private void keyPressed ()
     {
         if (cooldown <= 0)
         {
-            if (Input.GetKey(attackA))
+            //total speed < 3
+            if (rb.velocity.magnitude < 3)
             {
-                //summon card at current position facing the player's direction
-                Instantiate(card, rb.transform.position, rb.transform.rotation);
-                cooldown = 1;
+                //which way are they facing
+                if (rb.transform.rotation.y > 0)
+                {
+                    if (Input.GetKey(attackA))
+                    {
+                        //get a random card
+                        cardNo = Random.Range(1,5);
+                        //summon the random card at current position facing the player's direction
+                        if (cardNo == 1)
+                        {
+                            Instantiate(card1, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 2)
+                        {
+                            Instantiate(card2, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 3)
+                        {
+                            Instantiate(card3, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 4)
+                        {
+                            Instantiate(card4, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
+                        }
+                        cooldown = 1;
+                    }
+                }
+                else
+                {
+                    if (Input.GetKey(attackA))
+                    {
+                        //get a random card
+                        cardNo = Random.Range(1, 5);
+                        //summon the random card at current position facing the player's direction
+                        if (cardNo == 1)
+                        {
+                            Instantiate(card1, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 2)
+                        {
+                            Instantiate(card2, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 3)
+                        {
+                            Instantiate(card3, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 4)
+                        {
+                            Instantiate(card4, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
+                        }
+                        cooldown = 1;
+                    }
+                }
+            }
+            else
+            {
+                if (rb.transform.rotation.y > 0)
+                {
+                    if (Input.GetKey(attackA))
+                    {
+                        //get a random card
+                        cardNo = Random.Range(1, 5);
+                        //summon the random card at current position facing the player's direction
+                        if (cardNo == 1)
+                        {
+                            Instantiate(card1, rb.transform.position + new Vector3(2, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 2)
+                        {
+                            Instantiate(card2, rb.transform.position + new Vector3(2, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 3)
+                        {
+                            Instantiate(card3, rb.transform.position + new Vector3(2, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 4)
+                        {
+                            Instantiate(card4, rb.transform.position + new Vector3(2, 0, 0), rb.transform.rotation);
+                        }
+                        cooldown = 1;
+                    }
+                }
+                else
+                {
+                    if (Input.GetKey(attackA))
+                    {
+                        //get a random card
+                        cardNo = Random.Range(1, 5);
+                        //summon the random card at current position facing the player's direction
+                        if (cardNo == 1)
+                        {
+                            Instantiate(card1, rb.transform.position + new Vector3(-2, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 2)
+                        {
+                            Instantiate(card2, rb.transform.position + new Vector3(-2, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 3)
+                        {
+                            Instantiate(card3, rb.transform.position + new Vector3(-2, 0, 0), rb.transform.rotation);
+                        }
+                        if (cardNo == 4)
+                        {
+                            Instantiate(card4, rb.transform.position + new Vector3(-2, 0, 0), rb.transform.rotation);
+                        }
+                        cooldown = 1;
+                    }
+                }
             }
         }
     }
