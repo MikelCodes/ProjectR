@@ -26,6 +26,9 @@ public class objectBehaviour : MonoBehaviour
     [SerializeField]
     private float dotTimer;
 
+    [SerializeField]
+    private float stunTimer;
+
     private void Update()
     {
         //move forward
@@ -46,6 +49,7 @@ public class objectBehaviour : MonoBehaviour
             var target = collision.gameObject.GetComponent<playerBehaviour>();
             target.damager(damageAmount);
             target.dotStart(dotTimer, dotAmount);
+            target.stun(stunTimer);
         }
         Destroy(gameObject);
     }

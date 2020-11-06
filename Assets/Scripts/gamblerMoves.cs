@@ -31,71 +31,68 @@ public class gamblerMoves : MonoBehaviour
     {
         if (cooldown <= 0)
         {
-            //total speed < 3
-            if (rb.velocity.magnitude < 3)
+            if (Input.GetKey(attackA))
             {
-                //which way are they facing
-                if (rb.transform.rotation.y > 0)
-                {
-                    if (Input.GetKey(attackA))
-                    {
-                        //get a random card
-                        cardNo = Random.Range(1,5);
-                        //summon the random card at current position facing the player's direction
-                        if (cardNo == 1)
-                        {
-                            Instantiate(card1, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
-                        }
-                        if (cardNo == 2)
-                        {
-                            Instantiate(card2, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
-                        }
-                        if (cardNo == 3)
-                        {
-                            Instantiate(card3, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
-                        }
-                        if (cardNo == 4)
-                        {
-                            Instantiate(card4, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
-                        }
-                        cooldown = 1;
-                    }
-                }
-                else
-                {
-                    if (Input.GetKey(attackA))
-                    {
-                        //get a random card
-                        cardNo = Random.Range(1, 5);
-                        //summon the random card at current position facing the player's direction
-                        if (cardNo == 1)
-                        {
-                            Instantiate(card1, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
-                        }
-                        if (cardNo == 2)
-                        {
-                            Instantiate(card2, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
-                        }
-                        if (cardNo == 3)
-                        {
-                            Instantiate(card3, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
-                        }
-                        if (cardNo == 4)
-                        {
-                            Instantiate(card4, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
-                        }
-                        cooldown = 1;
-                    }
-                }
+
             }
+        }
+    }
+
+    private void attack1 ()
+    {
+        //picks one of the four suits
+        cardNo = Random.Range(1, 5);
+
+        //total speed < 3
+        if (rb.velocity.magnitude < 3)
+        {
+            //which way are they facing
+            if (rb.transform.rotation.y > 0)
+            {
+                //summon the random card at current position facing the player's direction
+                if (cardNo == 1)
+                {
+                    Instantiate(card1, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
+                }
+                if (cardNo == 2)
+                {
+                    Instantiate(card2, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
+                }
+                if (cardNo == 3)
+                {
+                    Instantiate(card3, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
+                }
+                if (cardNo == 4)
+                {
+                    Instantiate(card4, rb.transform.position + new Vector3(1, 0, 0), rb.transform.rotation);
+                }
+                cooldown = 1;
+            }
+
             else
             {
-                if (rb.transform.rotation.y > 0)
+                //summon the random card at current position facing the player's direction
+                if (cardNo == 1)
                 {
-                    if (Input.GetKey(attackA))
+                    Instantiate(card1, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
+                }
+                if (cardNo == 2)
+                {
+                    Instantiate(card2, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
+                }
+                if (cardNo == 3)
+                {
+                    Instantiate(card3, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
+                }
+                if (cardNo == 4)
+                {
+                    Instantiate(card4, rb.transform.position + new Vector3(-1, 0, 0), rb.transform.rotation);
+                }
+
+                else
+                {
+                    if (rb.transform.rotation.y > 0)
                     {
-                        //get a random card
-                        cardNo = Random.Range(1, 5);
                         //summon the random card at current position facing the player's direction
                         if (cardNo == 1)
                         {
@@ -113,15 +110,9 @@ public class gamblerMoves : MonoBehaviour
                         {
                             Instantiate(card4, rb.transform.position + new Vector3(2, 0, 0), rb.transform.rotation);
                         }
-                        cooldown = 1;
                     }
-                }
-                else
-                {
-                    if (Input.GetKey(attackA))
+                    else
                     {
-                        //get a random card
-                        cardNo = Random.Range(1, 5);
                         //summon the random card at current position facing the player's direction
                         if (cardNo == 1)
                         {
@@ -139,10 +130,10 @@ public class gamblerMoves : MonoBehaviour
                         {
                             Instantiate(card4, rb.transform.position + new Vector3(-2, 0, 0), rb.transform.rotation);
                         }
-                        cooldown = 1;
                     }
                 }
             }
         }
+        cooldown = 1;
     }
 }

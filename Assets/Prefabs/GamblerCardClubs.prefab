@@ -107,12 +107,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 684455836692283722}
-  moveSpeed: 200
+  moveSpeed: 100
   maxSpeed: 100
-  despawnTimer: 2
-  damageAmount: 0
+  despawnTimer: 1
+  damageAmount: 5
   dotAmount: 0
   dotTimer: 0
+  stunTimer: 0.1
 --- !u!54 &684455836692283722
 Rigidbody:
   m_ObjectHideFlags: 0

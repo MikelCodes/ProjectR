@@ -118,8 +118,7 @@ MonoBehaviour:
   maxSpeed: 30
   gravity: 40
   maxJumpDelay: 0.2
-  maxHealth: 2000
-  dotTimer: 0
+  health: 2000
 --- !u!54 &355725666364527649
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackA: 113
   rb: {fileID: 355725666364527649}
-  cooldown: 0
+  cooldown: 1
   card1: {fileID: 1851603312250076463, guid: 88b6ba4458c45a542b19644b910cf532, type: 3}
   card2: {fileID: 7454870755422121855, guid: 09cf356983e0d374ba00db8f4d72ac7b, type: 3}
   card3: {fileID: 6683416864451643307, guid: 825c937205709eb4ea62ca73df5c8522, type: 3}

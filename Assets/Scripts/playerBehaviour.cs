@@ -54,21 +54,32 @@ public class playerBehaviour: MonoBehaviour
 
     private bool jumpPressed;
 
-    //health system
-    [SerializeField]
-    private float maxHealth;
+    // lives
+    private int lives = 0;
 
-    private float health;
+    //health system
+    private float maxHealth = 2000;
+
+    [SerializeField]
+    private float health = 2000;
 
     //damage over time timer
-    public float dotTimer;
+    private float dotTimer;
 
     private float dot;
+
+    //stun time and how it ends
+    private float stunned;
+
+    private float stunHeath;
 
     private void Start()
     {
         //seting direction of raycast directly down
         hitDir = new Vector3(0, -90, 0);
+
+        //set max health
+        maxHealth = health;
 
         //set health to max
         resetHealth();
@@ -76,8 +87,40 @@ public class playerBehaviour: MonoBehaviour
 
     private void Update()
     {
-        //run keyPressed
-        keyPressed();
+        if (stunned <= 0)
+        {
+            //run keyPressed
+            keyPressed();
+
+            //jump delay and jump
+            if (jumpPressed == true)
+            {
+                if (jumpDelay <= 0)
+                {
+                    //jumps
+                    rb.AddForce(transform.up * jumpHeight);
+                    jumpPressed = false;
+                }
+                else
+                {
+                    jumpDelay -= Time.deltaTime;
+                }
+            }
+
+            if (dotTimer > 0)
+            {
+                doter();
+                dotTimer -= Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (stunHeath != health)
+            {
+                stunned = 0;
+            }
+            stunned -= Time.deltaTime;
+        }
 
         // Trying to Limit Speed
         if (rb.velocity.magnitude > maxSpeed)
@@ -85,25 +128,7 @@ public class playerBehaviour: MonoBehaviour
             rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
         }
 
-        if (jumpPressed == true)
-        {
-            if (jumpDelay <= 0)
-            {
-                //jumps
-                rb.AddForce(transform.up * jumpHeight);
-                jumpPressed = false;
-            }
-            else
-            {
-                jumpDelay -= Time.deltaTime;
-            }
-        }
-
-        if (dotTimer > 0)
-        {
-            doter();
-            dotTimer -= Time.deltaTime;
-        }
+        death();
     }
 
     //keyPressed
@@ -137,20 +162,17 @@ public class playerBehaviour: MonoBehaviour
         if (Physics.Raycast(rb.transform.position, hitDir, out hit, groundDist))
         {
             //if what is hit has the "jumpGround" tag player can jump
-            if (hit.transform.tag == "jumpGround")
+            if (hit.transform.tag == "jumpGround" && Input.GetKey(jump))
             {
                 //if pressing jump key
-                if (Input.GetKey(jump))
+                if (noJump <= 0)
                 {
-                    if (noJump <= 0)
-                    {
-                        //set timer
-                        noJump = (maxJumpDelay + 0.15f);
-                        jumpDelay = maxJumpDelay;
-                        jumpPressed = true;
-                    }
-
+                    //set timer
+                    noJump = (maxJumpDelay + 0.15f);
+                    jumpDelay = maxJumpDelay;
+                    jumpPressed = true;
                 }
+
                 else
                 {
                     //jump timer
@@ -206,5 +228,29 @@ public class playerBehaviour: MonoBehaviour
     {
         health -= (dot * Time.deltaTime);
         Debug.Log(health);
+    }
+
+    //stun
+    public void stun(float stunTime)
+    {
+        stunned = stunTime;
+        stunHeath = health;
+    }
+
+    //death
+    private void death()
+    {
+        if (health <= 0)
+        {
+            if (lives == 0)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                lives--;
+                resetHealth();
+            }
+        }
     }
 }

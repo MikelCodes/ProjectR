@@ -2928,6 +2928,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 13400000, guid: d89a3f04bc9d88b44a52f3772c93f4fb,
         type: 2}
+    - target: {fileID: 2472857128375006609, guid: 3dc23286dd9e21546a6228e8555af823,
+        type: 3}
+      propertyPath: attackA
+      value: 303
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dc23286dd9e21546a6228e8555af823, type: 3}
 --- !u!1 &1415431141

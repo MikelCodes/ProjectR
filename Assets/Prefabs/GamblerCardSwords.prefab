@@ -110,9 +110,10 @@ MonoBehaviour:
   moveSpeed: 200
   maxSpeed: 100
   despawnTimer: 2
-  damageAmount: 0
-  dotAmount: 0
-  dotTimer: 0
+  damageAmount: 3
+  dotAmount: 15
+  dotTimer: 5
+  stunTimer: 0
 --- !u!54 &5168261956396423915
 Rigidbody:
   m_ObjectHideFlags: 0
