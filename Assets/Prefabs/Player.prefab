@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3348382289189729506}
   - component: {fileID: 355725666364527649}
   - component: {fileID: 2472857128375006609}
+  - component: {fileID: 9034614549553327997}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -154,3 +155,46 @@ MonoBehaviour:
   card2: {fileID: 7454870755422121855, guid: 09cf356983e0d374ba00db8f4d72ac7b, type: 3}
   card3: {fileID: 6683416864451643307, guid: 825c937205709eb4ea62ca73df5c8522, type: 3}
   card4: {fileID: 995328428392549082, guid: fd1e1b6c3679666439e44e580865a006, type: 3}
+--- !u!114 &9034614549553327997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4563848102654888872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89cf2ca9ddc1e3f47ab3a73a66127e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.66812, g: 0.052941978, b: 0, a: 1}
+    key1: {r: 0.9753853, g: 1, b: 0, a: 1}
+    key2: {r: 0.07168019, g: 1, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 26792
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  fill: {fileID: 0}

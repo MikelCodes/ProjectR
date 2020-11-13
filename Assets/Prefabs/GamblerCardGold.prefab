@@ -109,7 +109,7 @@ MonoBehaviour:
   rb: {fileID: 7373591482294809558}
   moveSpeed: 50
   maxSpeed: 50
-  despawnTimer: 2
+  despawnTimer: 0.75
   damageAmount: 100
   dotAmount: 5
   dotTimer: 2

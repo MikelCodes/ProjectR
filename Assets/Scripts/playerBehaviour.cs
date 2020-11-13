@@ -73,6 +73,8 @@ public class playerBehaviour: MonoBehaviour
 
     private float stunHeath;
 
+    //UI
+
     private void Start()
     {
         //seting direction of raycast directly down
@@ -83,6 +85,9 @@ public class playerBehaviour: MonoBehaviour
 
         //set health to max
         resetHealth();
+
+        //set max health for healthbar
+        gameObject.GetComponent<healthUI>().setMaxHealth(health, maxHealth);
     }
 
     private void Update()
@@ -214,6 +219,7 @@ public class playerBehaviour: MonoBehaviour
     public void damager(float damage)
     {
         health -= damage;
+        gameObject.GetComponent<healthUI>().setHealth(health);
     }
 
     //sets damage over time
@@ -227,7 +233,7 @@ public class playerBehaviour: MonoBehaviour
     private void doter()
     {
         health -= (dot * Time.deltaTime);
-        Debug.Log(health);
+        gameObject.GetComponent<healthUI>().setHealth(health);
     }
 
     //stun
@@ -250,6 +256,7 @@ public class playerBehaviour: MonoBehaviour
             {
                 lives--;
                 resetHealth();
+                gameObject.GetComponent<healthUI>().setMaxHealth(health, maxHealth);
             }
         }
     }
