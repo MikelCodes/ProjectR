@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7373591482294809558}
-  moveSpeed: 50
+  moveSpeed: 200
   maxSpeed: 50
   despawnTimer: 0.75
   damageAmount: 100

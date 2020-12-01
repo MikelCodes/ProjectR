@@ -10,11 +10,16 @@ public class healthUI : MonoBehaviour
     public Image fill;
     private float maxHP;
 
+    private void Start()
+    {
+        fill.color = gradient.Evaluate(0.999f/1);
+    }
+
     public void setHealth (float health)
     {
         slider.value = health;
 
-        fill.color = gradient.Evaluate(health-1/maxHP);
+        fill.color = gradient.Evaluate(health/maxHP);
     }
 
     public void setMaxHealth (float health, float maxHealth)

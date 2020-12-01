@@ -8,11 +8,27 @@ public class playerBehaviour: MonoBehaviour
 
     //forward key
     [SerializeField]
-    KeyCode forward = KeyCode.D;
+    KeyCode forward;
 
     //backwards key
     [SerializeField]
-    KeyCode backwards = KeyCode.A;
+    KeyCode backwards;
+
+    //left key
+    [SerializeField]
+    KeyCode left;
+
+    //right key
+    [SerializeField]
+    KeyCode right;
+
+    //look left key
+    [SerializeField]
+    KeyCode lLeft;
+
+    //look right key
+    [SerializeField]
+    KeyCode lRight;
 
     //jump key
     [SerializeField]
@@ -22,13 +38,15 @@ public class playerBehaviour: MonoBehaviour
     [SerializeField]
     private Rigidbody rb;
 
+    private bool canJump;
+
     [SerializeField]
     private float moveSpeed;
 
-
-    //distance of raycast
     [SerializeField]
-    private float groundDist;
+    private float rotateSpeed;
+
+    private Vector3 rotation;
 
     //seting the height of the jump
     [SerializeField]
@@ -45,12 +63,9 @@ public class playerBehaviour: MonoBehaviour
     private float noJump;
 
     [SerializeField]
-    private float maxJumpDelay;
+    private float maxJumpDelay = 0.2f;
 
     private float jumpDelay;
-
-    //making a vector 3 for direction of ground
-    private Vector3 hitDir;
 
     private bool jumpPressed;
 
@@ -77,8 +92,7 @@ public class playerBehaviour: MonoBehaviour
 
     private void Start()
     {
-        //seting direction of raycast directly down
-        hitDir = new Vector3(0, -90, 0);
+        rotation = rb.rotation.eulerAngles;
 
         //set max health
         maxHealth = health;
@@ -142,9 +156,6 @@ public class playerBehaviour: MonoBehaviour
         //if pressing forward key
         if (Input.GetKey(forward))
         {
-            //run lookRight
-            lookRight();
-
             //move forward
             rb.AddForce(transform.forward * moveSpeed);
         }
@@ -152,41 +163,58 @@ public class playerBehaviour: MonoBehaviour
         //if pressing backwards key
         if (Input.GetKey(backwards))
         {
-            //run lookLeft
-            lookLeft();
-
             //move forward
-            rb.AddForce(transform.forward * moveSpeed);
+            rb.AddForce(-transform.forward * moveSpeed);
+        }
+        if (Input.GetKey(left))
+        {
+            rb.AddForce(-transform.right * (moveSpeed/2));
+
+        }
+        if (Input.GetKey(right))
+        {
+            rb.AddForce(transform.right * (moveSpeed/2));
+
+        }
+
+        //set look direction
+        if (Input.GetKey(lLeft))
+        {
+            //look left
+            rotation.y -= rotateSpeed;
+            rb.rotation = Quaternion.Euler(rotation);
+
+        }
+        if (Input.GetKey(lRight))
+        {
+            //look right
+            rotation.y += rotateSpeed;
+            rb.rotation = Quaternion.Euler(rotation);
+
         }
 
 
-        //stores raycast hit data in 'hit'
-        RaycastHit hit;
 
-        //runs raycast from player position looking down. Saves data in hit and will only go as far as before jump.
-        if (Physics.Raycast(rb.transform.position, hitDir, out hit, groundDist))
+        if (canJump == true)
         {
-            //if what is hit has the "jumpGround" tag player can jump
-            if (hit.transform.tag == "jumpGround" && Input.GetKey(jump))
+            //if pressing jump key
+            if (noJump <= 0)
             {
-                //if pressing jump key
-                if (noJump <= 0)
+                if (Input.GetKey(jump))
                 {
                     //set timer
                     noJump = (maxJumpDelay + 0.15f);
                     jumpDelay = maxJumpDelay;
                     jumpPressed = true;
                 }
-
-                else
-                {
-                    //jump timer
-                    if (noJump > 0)
-                    {
-                        noJump -= Time.deltaTime;
-                    }
-                }
             }
+
+            else
+            {
+                //jump timer
+                noJump -= Time.deltaTime;  
+            }
+        
         }
         // makes player fall faster
         else
@@ -195,15 +223,21 @@ public class playerBehaviour: MonoBehaviour
         }
     }
 
-    //lookRight
-    private void lookRight()
+    // allow to jump
+    public void makeJump (bool jumpable)
+    {
+        canJump = jumpable;
+    }
+
+    //hardLookRight
+    private void hardLookRight()
     {
         //Make look left
         transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
     }
 
-    //lookLeft
-    private void lookLeft()
+    //hardLookLeft
+    private void hardLookLeft()
     {
         //Make look right
         transform.rotation = Quaternion.Euler(transform.rotation.x, -90, transform.rotation.z);
