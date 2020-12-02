@@ -6,6 +6,10 @@ public class playerBehaviour: MonoBehaviour
 {
     //getting key binds
 
+    //key to switch feilds
+    [SerializeField]
+    KeyCode fieldChange;
+
     //forward key
     [SerializeField]
     KeyCode forward;
@@ -33,6 +37,12 @@ public class playerBehaviour: MonoBehaviour
     //jump key
     [SerializeField]
     KeyCode jump = KeyCode.W;
+
+    //bool for feilds
+    private bool field;
+
+    [SerializeField]
+    private cameraBehaviour cb;
 
     //reference to rigidbody
     [SerializeField]
@@ -108,8 +118,16 @@ public class playerBehaviour: MonoBehaviour
     {
         if (stunned <= 0)
         {
-            //run keyPressed
-            keyPressed();
+            //run the keypressed for the diffrent fields
+            if (field == false)
+            {
+                keyPressedField();
+            }
+            else
+            {
+                keyPressedSField();
+            }
+            
 
             //jump delay and jump
             if (jumpPressed == true)
@@ -151,7 +169,7 @@ public class playerBehaviour: MonoBehaviour
     }
 
     //keyPressed
-    private void keyPressed()
+    private void keyPressedField()
     {
         //if pressing forward key
         if (Input.GetKey(forward))
@@ -221,6 +239,65 @@ public class playerBehaviour: MonoBehaviour
         {
             rb.AddForce(-transform.up * gravity);
         }
+
+        //switch fields
+        if (Input.GetKey(fieldChange))
+        {
+            field = true;
+            cb.camPos(field);
+        }
+    }
+
+    private void keyPressedSField()
+    {
+        //if pressing forward key
+        if (Input.GetKey(right))
+        {
+            //move forward
+            rb.AddForce(transform.forward * moveSpeed);
+        }
+
+        //if pressing backwards key
+        if (Input.GetKey(left))
+        {
+            //move forward
+            rb.AddForce(-transform.forward * moveSpeed);
+        }
+
+
+        if (canJump == true)
+        {
+            //if pressing jump key
+            if (noJump <= 0)
+            {
+                if (Input.GetKey(forward))
+                {
+                    //set timer
+                    noJump = (maxJumpDelay + 0.15f);
+                    jumpDelay = maxJumpDelay;
+                    jumpPressed = true;
+                }
+            }
+
+            else
+            {
+                //jump timer
+                noJump -= Time.deltaTime;
+            }
+
+        }
+        // makes player fall faster
+        else
+        {
+            rb.AddForce(-transform.up * gravity);
+        }
+
+        //switch fields
+        if (Input.GetKey(fieldChange))
+        {
+            field = false;
+            cb.camPos(field);
+        }
     }
 
     // allow to jump
@@ -229,19 +306,6 @@ public class playerBehaviour: MonoBehaviour
         canJump = jumpable;
     }
 
-    //hardLookRight
-    private void hardLookRight()
-    {
-        //Make look left
-        transform.rotation = Quaternion.Euler(transform.rotation.x, 90, transform.rotation.z);
-    }
-
-    //hardLookLeft
-    private void hardLookLeft()
-    {
-        //Make look right
-        transform.rotation = Quaternion.Euler(transform.rotation.x, -90, transform.rotation.z);
-    }
 
     //for new lives
     private void resetHealth()
